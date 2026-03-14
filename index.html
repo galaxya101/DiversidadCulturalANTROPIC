@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diversidad Cultural – 1º BTO A · Grupo 3</title>
+
+<!--
+  ============================================================
+  RECURSOS VERIFICADOS
+  ============================================================
+  IMÁGENES: Wikimedia Commons – Special:FilePath
+  Redirige siempre al fichero real sin depender de rutas hash.
+  https://www.mediawiki.org/wiki/Manual:Special:FilePath
+
+  VÍDEOS: archive.org – iframe embed
+  Formato: https://archive.org/embed/{identifier}
+  Identificadores verificados:
+    · afana_picture_in_your_mind  → Philip Stapp (1948)
+    · food_around_the_world       → Gastronomía mundial
+    · afana_symmetry              → Philip Stapp (1966)
+    · brotherhood_of_man_1946     → UPA / Prelinger Archives
+  ============================================================
+-->
+
+<style>
+:root{
+  --T:#C4522A;--G:#E8A838;--D:#1A1025;--I:#0D0A18;--C:#F7F0E6;
+  --TL:#1D7A73;--R:#C4526A;--IN:#3D2B8E;--S:#4A7C59;
+  --ff:'Georgia','Times New Roman',serif;
+  --fb:'Segoe UI','Helvetica Neue',Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100vw;height:100vh;overflow:hidden;font-family:var(--fb);background:var(--I);cursor:none}
+#cursor{position:fixed;width:10px;height:10px;background:var(--G);border-radius:50%;
+  pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+
+/* ── slides ── */
+.slide{position:absolute;inset:0;opacity:0;pointer-events:none;
+  transform:translateX(55px);
+  transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);
+  overflow:hidden}
+.slide.active{opacity:1;pointer-events:all;transform:translateX(0)}
+.slide.exit{opacity:0;transform:translateX(-55px)}
+
+/* ── nav ── */
+.nav{position:fixed;bottom:1.6rem;left:50%;transform:translateX(-50%);z-index:300;
+  display:flex;align-items:center;gap:1rem;
+  background:rgba(10,5,20,.9);backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.1);border-radius:50px;padding:.55rem 1.3rem}
+.nav button{background:none;border:none;color:rgba(247,240,230,.5);font-size:1.15rem;
+  cursor:pointer;padding:.25rem .5rem;transition:color .2s,transform .2s}
+.nav button:hover{color:var(--G);transform:scale(1.25)}
+.nav button:disabled{opacity:.16;cursor:default;transform:none}
+.ctr{font-size:.78rem;color:var(--C);min-width:52px;text-align:center}
+.pbar{position:absolute;bottom:-1px;left:8%;right:8%;height:2px;
+  background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.pfill{height:100%;background:linear-gradient(90deg,var(--T),var(--G));transition:width .5s}
+
+/* ── dots ── */
+#dots{position:fixed;top:1rem;left:50%;transform:translateX(-50%);z-index:300;display:flex;gap:.42rem}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(247,240,230,.18);
+  cursor:pointer;transition:background .3s,transform .3s}
+.dot.active{background:var(--G);transform:scale(1.45)}
+
+/* ── animaciones ── */
+@keyframes fU{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.slide.active .a1{opacity:0;animation:fU .65s .08s forwards}
+.slide.active .a2{opacity:0;animation:fU .65s .22s forwards}
+.slide.active .a3{opacity:0;animation:fU .65s .38s forwards}
+.slide.active .a4{opacity:0;animation:fU .65s .54s forwards}
+.slide.active .a5{opacity:0;animation:fU .65s .70s forwards}
+
+/* ── imagen helper ── */
+.ph{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ── iframe vídeo ── */
+.vid-wrap{border-radius:12px;overflow:hidden;background:#000;
+  border:1px solid rgba(255,255,255,.1);flex-shrink:0}
+.vid-wrap iframe{display:block;width:100%;height:100%;border:none}
+.vid-caption{font-size:.68rem;color:rgba(247,240,230,.38);
+  padding:.4rem .8rem;font-style:italic;background:#000}
+
+/* ══ S1 PORTADA ══ */
+.s1{background:var(--I)}
+.s1 .bg{position:absolute;inset:0;overflow:hidden}
+.s1 .bg img{width:100%;height:100%;object-fit:cover;opacity:.22;filter:saturate(1.3)}
+.s1 .ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,10,24,.92) 0%,rgba(13,10,24,.52) 50%,rgba(13,10,24,.92) 100%)}
+.s1 .orb{position:absolute;border-radius:50%;filter:blur(90px)}
+.s1 .o1{width:440px;height:440px;background:rgba(196,82,42,.26);top:-110px;right:-90px}
+.s1 .o2{width:340px;height:340px;background:rgba(61,43,142,.3);bottom:-90px;left:-70px}
+.s1 .cnt{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;padding:3rem}
+.s1 .pill{background:rgba(232,168,56,.12);border:1px solid rgba(232,168,56,.28);
+  color:var(--G);font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;
+  padding:.32rem 1.1rem;border-radius:20px;margin-bottom:1.4rem}
+.s1 h1{font-family:var(--ff);font-size:clamp(3.2rem,8vw,7.5rem);font-weight:700;color:var(--C);line-height:1.02}
+.s1 h1 em{font-style:italic;color:var(--G)}
+.s1 .dv{width:76px;height:3px;background:linear-gradient(90deg,var(--T),var(--G));margin:1.6rem auto}
+.s1 .sub{font-size:.97rem;color:rgba(247,240,230,.6);max-width:500px;line-height:1.72;margin-bottom:1.8rem}
+.s1 .mbs{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center}
+.s1 .mb{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);
+  color:rgba(247,240,230,.85);padding:.34rem 1rem;border-radius:20px;font-size:.8rem}
+.s1 .asign{font-size:.7rem;color:rgba(247,240,230,.3);margin-top:1.4rem;letter-spacing:.12em;text-transform:uppercase}
+
+/* ══ S2 ÍNDICE ══ */
+.s2{background:var(--C)}
+.s2 .rainbow{position:absolute;top:0;left:0;right:0;height:6px;
+  background:linear-gradient(90deg,var(--TL),var(--S),var(--G),var(--T),var(--R),var(--IN))}
+.s2 .cnt{height:100%;display:grid;grid-template-columns:1fr 1.5fr;padding-top:6px}
+.s2 .left{background:var(--D);display:flex;flex-direction:column;justify-content:center;padding:3rem 2.5rem 3rem 4.5rem}
+.s2 .lbl{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--G);margin-bottom:.8rem}
+.s2 h2{font-family:var(--ff);font-size:clamp(1.8rem,3vw,2.8rem);color:var(--C);line-height:1.1;margin-bottom:1rem}
+.s2 .left p{color:rgba(247,240,230,.45);font-size:.85rem;line-height:1.7;margin-bottom:1.5rem}
+.s2 .globe{width:100px;height:100px;border-radius:50%;overflow:hidden;border:2px solid rgba(232,168,56,.3)}
+.s2 .globe img{width:100%;height:100%;object-fit:cover;filter:saturate(1.4) brightness(.8)}
+.s2 .right{display:flex;flex-direction:column;justify-content:center;padding:2.5rem 4rem 2.5rem 3rem}
+.s2 ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.s2 li{display:flex;align-items:center;gap:.9rem;padding:.65rem 1rem;background:white;
+  border-radius:9px;box-shadow:0 2px 8px rgba(0,0,0,.07);font-size:.84rem;color:#2a1f1f;transition:transform .2s}
+.s2 li:hover{transform:translateX(4px)}
+.s2 li .n{font-family:var(--ff);font-size:.95rem;font-weight:700;color:var(--T);min-width:22px}
+.s2 li .dc{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* ══ S3 DEFINICIÓN ══ */
+.s3{background:#FAF4EC}
+.s3 .cnt{height:100%;display:grid;grid-template-columns:1fr 1.35fr}
+.s3 .left{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:3rem 3rem 3rem 4.5rem}
+.s3 .bg-img{position:absolute;inset:0;overflow:hidden}
+.s3 .bg-img img{width:100%;height:100%;object-fit:cover;opacity:.4}
+.s3 .tint{position:absolute;inset:0;background:linear-gradient(to top,rgba(196,82,42,.95) 0%,rgba(196,82,42,.5) 60%,rgba(196,82,42,.2) 100%)}
+.s3 .lc{position:relative;z-index:2}
+.s3 .lbl{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(247,240,230,.75);margin-bottom:.7rem}
+.s3 h2{font-family:var(--ff);font-size:clamp(1.9rem,3.5vw,3.2rem);color:var(--C);line-height:1.1}
+.s3 .right{display:flex;flex-direction:column;justify-content:center;padding:3rem 4.5rem 3rem 3.5rem;gap:1.6rem}
+.s3 .def{border-left:4px solid var(--T);padding-left:1.4rem}
+.s3 .def p{font-size:.97rem;color:#2a1f1f;line-height:1.84}
+.s3 .g4{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.s3 .pil{background:rgba(196,82,42,.08);border-radius:11px;padding:.9rem}
+.s3 .pil h4{font-size:.8rem;font-weight:600;color:var(--T);margin-bottom:.25rem}
+.s3 .pil p{font-size:.76rem;color:#5a4040;line-height:1.52}
+.s3 .flags{display:flex;gap:.5rem;padding:.7rem 1rem;background:white;border-radius:9px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);flex-wrap:wrap;align-items:center}
+.s3 .flags span{font-size:1.35rem}
+.s3 .flags small{font-size:.72rem;color:rgba(42,31,31,.5);margin-left:.3rem}
+
+/* ══ S4 CIFRAS ══ */
+.s4{background:var(--D)}
+.s4 .stripe{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--G),transparent)}
+.s4 .cnt{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:3rem;text-align:center}
+.s4 .lbl{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--G);
+  background:rgba(232,168,56,.1);border:1px solid rgba(232,168,56,.2);
+  padding:.28rem .9rem;border-radius:20px;display:inline-block;margin-bottom:.8rem}
+.s4 h2{font-family:var(--ff);font-size:clamp(1.8rem,3vw,2.8rem);color:var(--C);margin-bottom:1.8rem}
+.s4 .wph{width:100%;max-width:860px;height:120px;border-radius:12px;overflow:hidden;
+  position:relative;margin-bottom:1.8rem;flex-shrink:0}
+.s4 .wph img{width:100%;height:100%;object-fit:cover;opacity:.55;filter:saturate(1.5)}
+.s4 .wph::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--D) 0%,transparent 30%,transparent 70%,var(--D) 100%)}
+.s4 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:860px;width:100%}
+.s4 .stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  border-radius:14px;padding:1.7rem 1.3rem;transition:transform .3s,border-color .3s}
+.s4 .stat:hover{transform:translateY(-5px);border-color:var(--G)}
+.s4 .stat .num{font-family:var(--ff);font-size:2.6rem;font-weight:700;color:var(--G);line-height:1}
+.s4 .stat .lb{font-size:.82rem;color:rgba(247,240,230,.6);margin-top:.45rem;line-height:1.5}
+
+/* ══ S5 LENGUAS ══ */
+.s5{background:#0F1A2E}
+.s5 .cnt{height:100%;display:grid;grid-template-columns:1fr 1fr}
+.s5 .left{display:flex;flex-direction:column;justify-content:center;padding:3.5rem 2.5rem 3.5rem 4.5rem}
+.s5 .lbl{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:#a89de8;
+  background:rgba(61,43,142,.15);padding:.28rem .8rem;border-radius:20px;display:inline-block;margin-bottom:1rem}
+.s5 h2{font-family:var(--ff);font-size:clamp(1.9rem,3.2vw,2.9rem);color:var(--C);line-height:1.08;margin-bottom:.9rem}
+.s5 .left p{color:rgba(247,240,230,.62);font-size:.88rem;line-height:1.76;margin-bottom:1.3rem}
+.s5 .mp{width:100%;border-radius:10px;overflow:hidden;margin-bottom:1.2rem;height:130px}
+.s5 .mp img{width:100%;height:100%;object-fit:cover;filter:saturate(1.3) brightness(.9)}
+.s5 .bars{display:flex;flex-direction:column;gap:.75rem}
+.s5 .bar .nm{font-size:.8rem;color:var(--C);margin-bottom:.3rem;display:flex;justify-content:space-between}
+.s5 .bar .bg{height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.s5 .bar .fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--IN),#9c8ee8)}
+.s5 .right{display:flex;flex-direction:column;justify-content:center;padding:3.5rem 4.5rem 3.5rem 2rem;gap:1rem}
+
+/* ══ S6 TRADICIONES ══ */
+.s6{background:var(--C)}
+.s6 .rainbow{position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--TL),var(--S),var(--G),var(--T))}
+.s6 .cnt{position:relative;height:100%;display:grid;grid-template-columns:1.2fr 1fr;padding-top:6px}
+.s6 .left{padding:2.8rem 2rem 2.8rem 4.5rem;display:flex;flex-direction:column;justify-content:center}
+.s6 .lbl{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--TL);margin-bottom:.7rem}
+.s6 h2{font-family:var(--ff);font-size:clamp(1.9rem,3.2vw,2.8rem);color:var(--D);margin-bottom:1.2rem;line-height:1.1}
+.s6 .trads{display:flex;flex-direction:column;gap:.8rem}
+.s6 .tr{display:flex;gap:.8rem;padding:.8rem .9rem;background:white;border-radius:11px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);align-items:flex-start}
+.s6 .tr .ic{font-size:1.7rem;flex-shrink:0;line-height:1.1}
+.s6 .tr h4{font-size:.82rem;font-weight:600;color:var(--TL);margin-bottom:.2rem}
+.s6 .tr p{font-size:.76rem;color:#444;line-height:1.5}
+.s6 .right{background:var(--TL);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2.5rem;gap:1.3rem}
+.s6 .hi{width:100%;height:160px;border-radius:12px;overflow:hidden;flex-shrink:0}
+.s6 .hi img{width:100%;height:100%;object-fit:cover}
+.s6 .qb{background:rgba(255,255,255,.1);border-radius:12px;padding:1.5rem;text-align:center}
+.s6 .qb .qm{font-family:var(--ff);font-size:3.5rem;color:rgba(255,255,255,.22);line-height:.45;margin-bottom:.7rem}
+.s6 .qb p{font-family:var(--ff);font-style:italic;font-size:1rem;color:white;line-height:1.7}
+.s6 .qb .au{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:.7rem}
+
+/* ══ S7 GASTRONOMÍA ══ */
+.s7{background:#1C0A00}
+.s7 .glow{position:absolute;inset:0;
+  background:radial-gradient(ellipse at 20% 50%,rgba(232,168,56,.15),transparent 60%),
+             radial-gradient(ellipse at 80% 50%,rgba(196,82,42,.2),transparent 60%)}
+.s7 .cnt{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;padding:3rem;text-align:center}
+.s7 .lbl{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--G);margin-bottom:.7rem}
+.s7 h2{font-family:var(--ff);font-size:clamp(1.9rem,3.8vw,3.4rem);color:var(--C);margin-bottom:1.5rem;line-height:1.08}
+.s7 .fb{width:100%;max-width:980px;height:130px;border-radius:14px;overflow:hidden;
+  position:relative;margin-bottom:1.8rem;flex-shrink:0}
+.s7 .fb img{width:100%;height:100%;object-fit:cover;opacity:.75;filter:saturate(1.5)}
+.s7 .fb::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#1C0A00,transparent 25%,transparent 75%,#1C0A00)}
+.s7 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;max-width:980px;width:100%}
+.s7 .fc{background:rgba(255,255,255,.05);border:1px solid rgba(232,168,56,.2);border-radius:13px;
+  padding:1.1rem .9rem;transition:transform .3s,background .3s}
+.s7 .fc:hover{transform:translateY(-6px);background:rgba(232,168,56,.1)}
+.s7 .fc .em{font-size:2.2rem;margin-bottom:.6rem}
+.s7 .fc h4{font-size:.82rem;color:var(--G);margin-bottom:.22rem;font-weight:500}
+.s7 .fc p{font-size:.74rem;color:rgba(247,240,230,.56);line-height:1.5}
+.s7 .fc .or{font-size:.67rem;color:var(--T);margin-top:.4rem}
+
+/* ══ S8 GASTRONOMÍA II ══ */
+.s8{background:var(--C)}
+.s8 .cnt{height:100%;display:grid;grid-template-columns:1fr 1fr}
+.s8 .left{background:var(--G);display:flex;flex-direction:column;justify-content:center;padding:3.5rem}
+.s8 h2{font-family:var(--ff);font-size:clamp(1.7rem,2.8vw,2.5rem);color:var(--D);margin-bottom:1rem;line-height:1.1}
+.s8 .left p{font-size:.93rem;color:rgba(26,16,37,.7);line-height:1.8;margin-bottom:1.3rem}
+.s8 .facts{display:flex;flex-direction:column;gap:.8rem}
+.s8 .fact{display:flex;align-items:center;gap:1.1rem;padding:.9rem;border-bottom:1px solid rgba(0,0,0,.09)}
+.s8 .fact .n{font-family:var(--ff);font-size:1.9rem;font-weight:700;color:var(--T);min-width:65px}
+.s8 .fact p{font-size:.8rem;color:#333;line-height:1.5}
+.s8 .right{display:flex;flex-direction:column;justify-content:center;padding:3rem;gap:1.3rem;background:#fdf5e4}
+.s8 .si{width:100%;height:130px;border-radius:12px;overflow:hidden;flex-shrink:0}
+.s8 .si img{width:100%;height:100%;object-fit:cover;filter:saturate(1.5)}
+
+/* ══ S9 RELIGIÓN ══ */
+.s9{background:var(--D)}
+.s9 .stars{position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 8% 15%,rgba(255,255,255,.45) 0%,transparent 100%),
+    radial-gradient(1px 1px at 25% 68%,rgba(255,255,255,.35) 0%,transparent 100%),
+    radial-gradient(1px 1px at 55% 8%,rgba(255,255,255,.38) 0%,transparent 100%),
+    radial-gradient(1px 1px at 78% 48%,rgba(255,255,255,.32) 0%,transparent 100%)}
+.s9 .cnt{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:.9fr 1.1fr}
+.s9 .left{display:flex;flex-direction:column;justify-content:center;padding:3.5rem 3rem 3.5rem 4.5rem;border-right:1px solid rgba(255,255,255,.07)}
+.s9 .lbl{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--R);margin-bottom:.7rem}
+.s9 h2{font-family:var(--ff);font-size:clamp(1.9rem,3.2vw,3rem);color:var(--C);margin-bottom:1rem;line-height:1.1}
+.s9 .left p{color:rgba(247,240,230,.58);font-size:.88rem;line-height:1.75;margin-bottom:1.2rem}
+.s9 .ri{width:100%;height:110px;border-radius:10px;overflow:hidden}
+.s9 .ri img{width:100%;height:100%;object-fit:contain;background:rgba(255,255,255,.05);padding:.5rem;filter:brightness(1.2)}
+.s9 .right{display:flex;flex-direction:column;justify-content:center;padding:3.5rem 4.5rem 3.5rem 2.5rem;gap:.8rem}
+.s9 .rel{display:flex;align-items:center;gap:1.2rem;padding:.9rem 1.2rem;
+  background:rgba(255,255,255,.04);border-radius:11px;border:1px solid rgba(255,255,255,.06);transition:background .3s,border-color .3s}
+.s9 .rel:hover{background:rgba(255,255,255,.08);border-color:rgba(196,82,106,.3)}
+.s9 .rel .sym{font-size:1.8rem;min-width:34px;text-align:center}
+.s9 .rel h4{font-size:.88rem;color:var(--C);margin-bottom:.13rem}
+.s9 .rel p{font-size:.75rem;color:rgba(247,240,230,.48);line-height:1.4}
+
+/* ══ S10 ARTE ══ */
+.s10{background:#0A0014}
+.s10 .cnt{height:100%;display:grid;grid-template-columns:1.3fr 1fr}
+.s10 .left{display:flex;flex-direction:column;justify-content:center;padding:3.5rem 2.5rem 3.5rem 4.5rem}
+.s10 .lbl{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--R);margin-bottom:.7rem}
+.s10 h2{font-family:var(--ff);font-size:clamp(1.9rem,3.2vw,3.1rem);color:var(--C);margin-bottom:.9rem;line-height:1.1}
+.s10 .ai{width:100%;height:110px;border-radius:10px;overflow:hidden;margin-bottom:1rem}
+.s10 .ai img{width:100%;height:100%;object-fit:cover;filter:saturate(1.3)}
+.s10 .abs{display:flex;flex-direction:column;gap:.8rem}
+.s10 .ab{background:rgba(255,255,255,.04);border-left:3px solid var(--R);border-radius:0 9px 9px 0;padding:.8rem 1.2rem}
+.s10 .ab h4{font-size:.83rem;color:var(--R);margin-bottom:.22rem}
+.s10 .ab p{font-size:.76rem;color:rgba(247,240,230,.6);line-height:1.5}
+.s10 .right{display:flex;flex-direction:column;justify-content:center;padding:3.5rem 4.5rem 3.5rem 2rem;gap:1rem}
+.s10 .g2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:.5rem}
+.s10 .ins{background:rgba(196,82,106,.1);border:1px solid rgba(196,82,106,.2);border-radius:10px;
+  padding:.9rem;text-align:center;transition:transform .25s}
+.s10 .ins:hover{transform:scale(1.05)}
+.s10 .ins .ii{font-size:1.7rem;margin-bottom:.3rem}
+.s10 .ins span{font-size:.73rem;color:rgba(247,240,230,.7)}
+
+/* ══ S11 INCLUSIÓN ══ */
+.s11{background:var(--TL)}
+.s11 .rings{position:absolute;inset:0;overflow:hidden}
+.s11 .rings span{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.1)}
+.s11 .r1{width:380px;height:380px;top:-90px;right:-90px}
+.s11 .r2{width:240px;height:240px;bottom:-50px;left:-50px}
+.s11 .r3{width:580px;height:580px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.s11 .cnt{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1.2fr 1fr}
+.s11 .left{display:flex;flex-direction:column;justify-content:center;padding:3.5rem 3rem 3.5rem 4.5rem}
+.s11 .lbl{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:.7rem}
+.s11 h2{font-family:var(--ff);font-size:clamp(1.9rem,3.2vw,3rem);color:white;margin-bottom:1rem;line-height:1.1}
+.s11 .left p{color:rgba(255,255,255,.78);font-size:.92rem;line-height:1.75;margin-bottom:1.3rem}
+.s11 .bens{display:flex;flex-direction:column;gap:.6rem}
+.s11 .ben{display:flex;align-items:center;gap:.8rem;color:white;font-size:.86rem}
+.s11 .ben .dot{width:7px;height:7px;border-radius:50%;background:var(--G);flex-shrink:0}
+.s11 .right{display:flex;flex-direction:column;justify-content:center;padding:3.5rem 4.5rem 3.5rem 2.5rem;gap:1rem}
+.s11 .pc{background:rgba(255,255,255,.13);border-radius:9px;padding:.9rem;text-align:center}
+.s11 .pc .ic{font-size:1.4rem;margin-bottom:.3rem}
+.s11 .pc span{font-size:.76rem;color:white}
+.s11 .pcards{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:.5rem}
+
+/* ══ S12 CÓMO PROMOVER ══ */
+.s12{background:var(--I)}
+.s12 .cnt{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:3.5rem;text-align:center}
+.s12 .lbl{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--TL);
+  background:rgba(29,122,115,.1);border:1px solid rgba(29,122,115,.25);
+  padding:.28rem .9rem;border-radius:20px;display:inline-block;margin-bottom:.7rem}
+.s12 h2{font-family:var(--ff);font-size:clamp(1.7rem,2.8vw,2.7rem);color:var(--C);margin-bottom:2.2rem}
+.s12 .g6{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:940px;width:100%}
+.s12 .sc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+  border-radius:13px;padding:1.6rem 1.2rem;text-align:left;transition:transform .3s,border-color .3s}
+.s12 .sc:hover{transform:translateY(-6px);border-color:var(--TL)}
+.s12 .sc .nn{font-family:var(--ff);font-size:2.3rem;font-weight:700;color:var(--TL);
+  opacity:.38;line-height:1;margin-bottom:.35rem}
+.s12 .sc h4{font-size:.86rem;color:var(--C);margin-bottom:.35rem}
+.s12 .sc p{font-size:.77rem;color:rgba(247,240,230,.48);line-height:1.55}
+
+/* ══ S13 CONCLUSIÓN ══ */
+.s13{background:var(--I)}
+.s13 .gb{position:absolute;inset:0;background:linear-gradient(135deg,rgba(196,82,42,.26),rgba(26,16,37,0) 40%,rgba(29,122,115,.26))}
+.s13 .ob1{position:absolute;width:380px;height:380px;border-radius:50%;background:rgba(196,82,42,.12);top:-90px;right:-90px;filter:blur(65px)}
+.s13 .ob2{position:absolute;width:280px;height:280px;border-radius:50%;background:rgba(29,122,115,.12);bottom:-70px;left:-70px;filter:blur(55px)}
+.s13 .cnt{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;padding:4rem}
+.s13 .lbl{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--G);margin-bottom:1.1rem}
+.s13 h2{font-family:var(--ff);font-size:clamp(2.4rem,5vw,4.5rem);color:var(--C);
+  line-height:1.08;margin-bottom:1.4rem;max-width:760px}
+.s13 h2 em{color:var(--G);font-style:italic}
+.s13 .dv{width:56px;height:3px;background:var(--G);margin:0 auto 1.4rem}
+.s13 .cita{font-family:var(--ff);font-style:italic;font-size:1.08rem;
+  color:rgba(247,240,230,.72);max-width:560px;line-height:1.76;margin-bottom:1.8rem}
+.s13 .preg{background:rgba(232,168,56,.1);border:1px solid rgba(232,168,56,.28);
+  border-radius:11px;padding:.9rem 1.8rem;color:var(--G);font-size:.88rem;max-width:600px;line-height:1.62}
+.s13 .preg strong{color:white}
+.s13 .fl{font-size:1.65rem;margin-top:1.4rem;letter-spacing:.3rem}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="dots"></div>
+
+<!-- ═══════════════════════════════════
+     S1  PORTADA
+═══════════════════════════════════ -->
+<div class="slide s1 active" data-i="0">
+  <div class="bg">
+    <!-- Tierra desde Apolo 17 · NASA · Dominio público -->
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/The_Earth_seen_from_Apollo_17.jpg?width=1280"
+         alt="La Tierra desde el espacio">
+  </div>
+  <div class="ov"></div>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="cnt">
+    <div class="pill a1">Filosofía · 2ª Evaluación · Antropología · 1º BTO A</div>
+    <h1 class="a2"><em>Diversidad</em><br>Cultural</h1>
+    <div class="dv a3"></div>
+    <p class="sub a3">Un viaje por las lenguas, tradiciones, sabores, creencias y expresiones que hacen del mundo un mosaico único e irrepetible.</p>
+    <div class="mbs a4">
+      <span class="mb">Marcos S.</span><span class="mb">Héctor</span>
+      <span class="mb">Manuel</span><span class="mb">Hasibullah</span>
+    </div>
+    <div class="asign a5">Grupo 3 · 2025</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     S2  ÍNDICE
+═══════════════════════════════════ -->
+<div class="slide s2" data-i="1">
+  <div class="rainbow"></div>
+  <div class="cnt">
+    <div class="left">
+      <div class="lbl a1">Contenidos</div>
+      <h2 class="a2">Índice</h2>
+      <p class="a3">13 diapositivas<br>7–10 min exposición</p>
+      <div class="globe a4">
+        <!-- Globo terráqueo · Dominio público -->
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Earth_Western_Hemisphere_transparent_background.png?width=200"
+             alt="Globo">
+      </div>
+    </div>
+    <div class="right">
+      <ul class="a2">
+        <li><span class="n">1</span><span class="dc" style="background:var(--T)"></span>¿Qué es la Diversidad Cultural?</li>
+        <li><span class="n">2</span><span class="dc" style="background:var(--G)"></span>El Mundo en Cifras</li>
+        <li><span class="n">3</span><span class="dc" style="background:var(--IN)"></span>Lenguas del Mundo 📹</li>
+        <li><span class="n">4</span><span class="dc" style="background:var(--TL)"></span>Tradiciones del Mundo</li>
+        <li><span class="n">5</span><span class="dc" style="background:var(--G)"></span>Gastronomía Global</li>
+        <li><span class="n">6</span><span class="dc" style="background:var(--T)"></span>Comida como Puente Cultural 📹</li>
+        <li><span class="n">7</span><span class="dc" style="background:var(--R)"></span>Religión y Creencias</li>
+        <li><span class="n">8</span><span class="dc" style="background:var(--R)"></span>Arte y Música 📹</li>
+        <li><span class="n">9</span><span class="dc" style="background:var(--TL)"></span>Importancia de la Inclusión 📹</li>
+        <li><span class="n">10</span><span class="dc" style="background:var(--IN)"></span>¿Cómo Promover la Inclusión?</li>
+        <li><span class="n">11</span><span class="dc" style="background:var(--G)"></span>Conclusión</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     S3  DEFINICIÓN
+═══════════════════════════════════ -->
+<div class="slide s3" data-i="2">
+  <div class="cnt">
+    <div class="left">
+      <!-- Bandera ONU · Dominio público -->
+      <div class="bg-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_the_United_Nations.svg?width=800"
+             alt="Bandera ONU">
+      </div>
+      <div class="tint"></div>
+      <div class="lc">
+        <div class="lbl a1">Definición</div>
+        <h2 class="a2">¿Qué es la<br>Diversidad<br>Cultural?</h2>
+      </div>
+    </div>
+    <div class="right">
+      <div class="def a2">
+        <p>La <strong>diversidad cultural</strong> es la variedad de culturas humanas que coexisten en el mundo. Abarca diferencias en idiomas, tradiciones, costumbres, valores, creencias religiosas y expresiones artísticas de cada pueblo.</p>
+      </div>
+      <div class="g4 a3">
+        <div class="pil"><h4>🌐 Pluralidad</h4><p>Múltiples formas de entender el mundo y la existencia.</p></div>
+        <div class="pil"><h4>🤝 Convivencia</h4><p>Distintas culturas compartiendo espacios y diálogo.</p></div>
+        <div class="pil"><h4>💡 Innovación</h4><p>El encuentro cultural genera ideas y soluciones nuevas.</p></div>
+        <div class="pil"><h4>🏛️ Patrimonio</h4><p>Riqueza heredada que define nuestra identidad colectiva.</p></div>
+      </div>
+      <div class="flags a4">
+        <span>🇯🇵</span><span>🇲🇽</span><span>🇮🇳</span><span>🇸🇦</span><span>🇳🇬</span>
+        <span>🇧🇷</span><span>🇨🇳</span><span>🇰🇷</span><span>🇹🇷</span><span>🇵🇪</span>
+        <small>195 países · culturas únicas</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     S4  CIFRAS
+═══════════════════════════════════ -->
+<div class="slide s4" data-i="3">
+  <div class="stripe"></div>
+  <div class="cnt">
+    <div class="lbl a1">En Números</div>
+    <h2 class="a2">El Mundo en Cifras</h2>
+    <div class="wph a3">
+      <!-- Mapa familias lingüísticas · CC BY-SA -->
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Human_Language_Families_Map_%28no_legend%29.png?width=1280"
+           alt="Mapa de lenguas del mundo">
+    </div>
+    <div class="stats a3">
+      <div class="stat"><div class="num">7,000+</div><div class="lb">Lenguas vivas en el mundo</div></div>
+      <div class="stat"><div class="num">195</div><div class="lb">Países con culturas únicas</div></div>
+      <div class="stat"><div class="num">4,200+</div><div class="lb">Religiones y sistemas de creencias</div></div>
+      <div class="stat"><div class="num">550</div><div class="lb">Elementos Patrimonio Inmaterial UNESCO</div></div>
+      <div class="stat"><div class="num">40%</div><div class="lb">De lenguas en peligro de extinción</div></div>
+      <div class="stat"><div class="num">1,000M</div><div class="lb">Personas en migración cultural global</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     S5  LENGUAS + VÍDEO
+     Vídeo: "Picture in Your Mind" (1948) – Philip Stapp
+     archive.org/details/afana_picture_in_your_mind
+═══════════════════════════════════ -->
+<div class="slide s5" data-i="4">
+  <div class="cnt">
+    <div class="left">
+      <div class="lbl a1">Comunicación</div>
+      <h2 class="a2">Lenguas y<br>Tradiciones</h2>
+      <p class="a3">El lenguaje es el vehículo de la cultura. Cada idioma contiene una cosmovisión única, formas de nombrar emociones y relaciones que ningún otro puede replicar exactamente.</p>
+      <div class="mp a3">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Human_Language_Families_Map_%28no_legend%29.png?width=800"
+             alt="Mapa familias lingüísticas">
+      </div>
+      <div class="bars a4">
+        <div class="bar"><div class="nm"><span>Mandarín</span><span>920M</span></div><div class="bg"><div class="fill" style="width:92%"></div></div></div>
+        <div class="bar"><div class="nm"><span>Español</span><span>480M</span></div><div class="bg"><div class="fill" style="width:74%"></div></div></div>
+        <div class="bar"><div class="nm"><span>Hindi</span><span>340M</span></div><div class="bg"><div class="fill" style="width:56%"></div></div></div>
+        <div class="bar"><div class="nm"><span>Árabe</span><span>315M</span></div><div class="bg"><div class="fill" style="width:50%;background:linear-gradient(90deg,var(--T),var(--G))"></div></div></div>
+        <div class="bar"><div class="nm"><span>+6,000 lenguas más</span><span>🌍</span></div><div class="bg"><div class="fill" style="width:28%;background:linear-gradient(90deg,var(--R),#e89090)"></div></div></div>
+      </div>
+    </div>
+    <div class="right a3">
+      <div class="vid-wrap" style="height:260px">
+        <iframe src="https://archive.org/embed/afana_picture_in_your_mind"
+                allowfullscreen title="Picture in Your Mind (1948)"></iframe>
+      </div>
+      <div class="vid-caption">📹 Picture in Your Mind (1948) · Philip Stapp · Sobre prejuicios culturales y barreras entre pueblos · Dominio público · archive.org</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     S6  TRADICIONES
+═══════════════════════════════════ -->
+<div class="slide s6" data-i="5">
+  <div class="rainbow"></div>
+  <div class="cnt">
+    <div class="left">
+      <div class="lbl a1">Herencia Viva</div>
+      <h2 class="a2">Tradiciones<br>del Mundo</h2>
+      <div class="trads a3">
+        <div class="tr"><div class="ic">🎎</div><div><h4>Japón — Hanami</h4><p>Contemplar cerezos en flor: belleza efímera y renovación primaveral.</p></div></div>
+        <div class="tr"><div class="ic">🪷</div><div><h4>India — Holi</h4><p>Festival de colores: la primavera y el triunfo del bien sobre el mal.</p></div></div>
+        <div class="tr"><div class="ic">💀</div><div><h4>México — Día de Muertos</h4><p>Honra a los difuntos con ofrendas, flores y recuerdos llenos de alegría.</p></div></div>
+        <div class="tr"><div class="ic">🥁</div><div><h4>África — Ubuntu</h4><p>"Soy porque somos." La comunidad como fundamento de la identidad.</p></div></div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="hi">
+        <!-- Festival Holi · CC BY 2.0 -->
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Holi_celebration.jpg?width=800"
+             alt="Festival Holi India">
+      </div>
+      <div class="qb a3">
+        <div class="qm">"</div>
+        <p>Las tradiciones son raíces que dan fuerza para crecer hacia el futuro.</p>
+        <div class="au">— Reflexión sobre herencia cultural</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     S7  GASTRONOMÍA GLOBAL
+═══════════════════════════════════ -->
+<div class="slide s7" data-i="6">
+  <div class="glow"></div>
+  <div class="cnt">
+    <div class="lbl a1">Sabores del Mundo</div>
+    <h2 class="a2">Gastronomía Global</h2>
+    <div class="fb a2">
+      <!-- Variedad de alimentos · NCI · Dominio público -->
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Good_Food_Display_-_NCI_Visuals_Online.jpg?width=1280"
+           alt="Variedad de alimentos del mundo">
+    </div>
+    <div class="g4 a3">
+      <div class="fc"><div class="em">🍜</div><h4>Ramen</h4><p>Caldo profundo y fideos: el alma de la gastronomía japonesa.</p><div class="or">🇯🇵 Japón</div></div>
+      <div class="fc"><div class="em">🫔</div><h4>Tacos</h4><p>Tortilla, proteína y salsa: México en cada bocado mestizo.</p><div class="or">🇲🇽 México</div></div>
+      <div class="fc"><div class="em">🍛</div><h4>Curry</h4><p>Siglos de historia y comercio en una mezcla de especias.</p><div class="or">🇮🇳 India</div></div>
+      <div class="fc"><div class="em">🥙</div><h4>Shawarma</h4><p>Especias, carnes y pan: el equilibrio de Oriente Medio.</p><div class="or">🌍 Oriente Medio</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     S8  GASTRONOMÍA II + VÍDEO
+     Vídeo: "Food Around the World"
+     archive.org/details/food_around_the_world
+═══════════════════════════════════ -->
+<div class="slide s8" data-i="7">
+  <div class="cnt">
+    <div class="left">
+      <h2 class="a1">La comida como<br>puente cultural</h2>
+      <p class="a2">La gastronomía preserva la identidad, cuenta historias y conecta generaciones. Cada receta lleva consigo migraciones, intercambios e innovaciones históricas.</p>
+      <div class="facts a3">
+        <div class="fact"><div class="n">26</div><p>Cocinas nacionales reconocidas como Patrimonio Cultural Inmaterial UNESCO.</p></div>
+        <div class="fact"><div class="n">70%</div><p>De los ingredientes que usamos provienen de otras culturas.</p></div>
+        <div class="fact"><div class="n">3×</div><p>Los restaurantes étnicos generan tres veces más interés cultural que el turismo convencional.</p></div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="si">
+        <!-- Especias en mercado indio · CC BY-SA 2.0 -->
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Spices_in_an_Indian_market.jpg?width=800"
+             alt="Especias en mercado indio">
+      </div>
+      <div class="vid-wrap a3" style="height:220px">
+        <iframe src="https://archive.org/embed/food_around_the_world"
+                allowfullscreen title="Food Around the World"></iframe>
+      </div>
+      <div class="vid-caption">📹 Food Around the World · Gastronomía global · Dominio público · archive.org</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     S9  RELIGIÓN
+═══════════════════════════════════ -->
+<div class="slide s9" data-i="8">
+  <div class="stars"></div>
+  <div class="cnt">
+    <div class="left">
+      <div class="lbl a1">Espiritualidad</div>
+      <h2 class="a2">Religión y<br>Creencias</h2>
+      <p class="a3">Las creencias espirituales moldean los valores, las fiestas y la ética de cada civilización. La diversidad religiosa enriquece el diálogo humano.</p>
+      <div class="ri a4">
+        <!-- Símbolos religiosos · Dominio público -->
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Religious_syms.svg?width=800"
+             alt="Símbolos de las principales religiones">
+      </div>
+    </div>
+    <div class="right">
+      <div class="rel a2"><div class="sym">✝️</div><div><h4>Cristianismo</h4><p>~2.4 mil millones · Fe en Jesucristo y amor al prójimo.</p></div></div>
+      <div class="rel a3"><div class="sym">☪️</div><div><h4>Islam</h4><p>~1.9 mil millones · Los cinco pilares y sumisión a Alá.</p></div></div>
+      <div class="rel a3"><div class="sym">🕉️</div><div><h4>Hinduismo</h4><p>~1.2 mil millones · Dharma, karma y moksha.</p></div></div>
+      <div class="rel a4"><div class="sym">☸️</div><div><h4>Budismo</h4><p>~500 millones · Las Cuatro Nobles Verdades.</p></div></div>
+      <div class="rel a4"><div class="sym">✡️</div><div><h4>Judaísmo</h4><p>~14 millones · La Torá como guía de vida.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     S10  ARTE + VÍDEO
+     Vídeo: "Symmetry" (1966) – Philip Stapp
+     archive.org/details/afana_symmetry
+═══════════════════════════════════ -->
+<div class="slide s10" data-i="9">
+  <div class="cnt">
+    <div class="left">
+      <div class="lbl a1">Expresión</div>
+      <h2 class="a2">Arte y Música</h2>
+      <div class="ai a2">
+        <!-- La Gran Ola de Hokusai, ~1831 · Dominio público -->
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tsunami_by_hokusai_19th_century.jpg?width=1280"
+             alt="La Gran Ola de Kanagawa – Hokusai">
+      </div>
+      <div class="abs a3">
+        <div class="ab"><h4>Arte Visual</h4><p>Pintura, escultura y arte digital reflejan cosmovisiones únicas de cada pueblo.</p></div>
+        <div class="ab"><h4>Música y Danza</h4><p>Del flamenco al samba, del jazz al cumbia: ritmos universales con formas infinitas.</p></div>
+        <div class="ab"><h4>Literatura Oral</h4><p>Mitos y cuentos que preservan la memoria colectiva de cada civilización.</p></div>
+        <div class="ab"><h4>Arquitectura Sagrada</h4><p>Templos, mezquitas y catedrales: cada estructura es un manifiesto cultural.</p></div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="g2 a3">
+        <div class="ins"><div class="ii">🎸</div><span>Guitarra</span></div>
+        <div class="ins"><div class="ii">🥁</div><span>Djembé</span></div>
+        <div class="ins"><div class="ii">🪕</div><span>Sitar</span></div>
+        <div class="ins"><div class="ii">🎻</div><span>Erhu</span></div>
+        <div class="ins"><div class="ii">🪗</div><span>Acordeón</span></div>
+        <div class="ins"><div class="ii">🎺</div><span>Trompeta</span></div>
+      </div>
+      <div class="vid-wrap a4" style="height:220px">
+        <iframe src="https://archive.org/embed/afana_symmetry"
+                allowfullscreen title="Symmetry (1966) – Philip Stapp"></iframe>
+      </div>
+      <div class="vid-caption">📹 Symmetry (1966) · Philip Stapp · Dominio público · archive.org</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     S11  INCLUSIÓN + VÍDEO
+     Vídeo: "Brotherhood of Man" (1946) – UPA / Prelinger
+     archive.org/details/brotherhood_of_man_1946
+═══════════════════════════════════ -->
+<div class="slide s11" data-i="10">
+  <div class="rings"><span class="r1"></span><span class="r2"></span><span class="r3"></span></div>
+  <div class="cnt">
+    <div class="left">
+      <div class="lbl a1">Por qué Importa</div>
+      <h2 class="a2">Importancia<br>de la Inclusión</h2>
+      <p class="a3">Una sociedad inclusiva respeta, valora e integra la diversidad cultural como una fortaleza. No se trata de tolerar las diferencias, sino de celebrarlas.</p>
+      <div class="bens a4">
+        <div class="ben"><div class="dot"></div>Enriquece la creatividad colectiva e innovación</div>
+        <div class="ben"><div class="dot"></div>Fortalece la cohesión social y el tejido comunitario</div>
+        <div class="ben"><div class="dot"></div>Reduce la discriminación y la violencia cultural</div>
+        <div class="ben"><div class="dot"></div>Fomenta el diálogo y la comprensión global</div>
+        <div class="ben"><div class="dot"></div>Preserva el patrimonio inmaterial de la humanidad</div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="pcards a3">
+        <div class="pc"><div class="ic">🫂</div><span>Empatía</span></div>
+        <div class="pc"><div class="ic">⚖️</div><span>Equidad</span></div>
+        <div class="pc"><div class="ic">🗣️</div><span>Diálogo</span></div>
+        <div class="pc"><div class="ic">🌱</div><span>Respeto</span></div>
+        <div class="pc"><div class="ic">🔓</div><span>Libertad</span></div>
+        <div class="pc"><div class="ic">🌈</div><span>Diversidad</span></div>
+      </div>
+      <div class="vid-wrap a4" style="height:220px">
+        <iframe src="https://archive.org/embed/brotherhood_of_man_1946"
+                allowfullscreen title="Brotherhood of Man (1946)"></iframe>
+      </div>
+      <div class="vid-caption">📹 Brotherhood of Man (1946) · UPA / Prelinger Archives · Dominio público · archive.org</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     S12  CÓMO PROMOVER
+═══════════════════════════════════ -->
+<div class="slide s12" data-i="11">
+  <div class="cnt">
+    <div class="lbl a1">Acción</div>
+    <h2 class="a2">¿Cómo Promover la<br>Inclusión Cultural?</h2>
+    <div class="g6 a3">
+      <div class="sc"><div class="nn">01</div><h4>Educación Intercultural</h4><p>Programas que enseñen historia y valores de múltiples culturas desde la infancia.</p></div>
+      <div class="sc"><div class="nn">02</div><h4>No Discriminación</h4><p>Leyes que protejan los derechos culturales y sancionen la discriminación.</p></div>
+      <div class="sc"><div class="nn">03</div><h4>Espacios de Encuentro</h4><p>Ferias, festivales y eventos que permitan el intercambio entre comunidades.</p></div>
+      <div class="sc"><div class="nn">04</div><h4>Medios Inclusivos</h4><p>Representar la diversidad en televisión, redes e internet de forma auténtica.</p></div>
+      <div class="sc"><div class="nn">05</div><h4>Lenguas Minoritarias</h4><p>Apoyar programas de revitalización de idiomas en peligro de extinción.</p></div>
+      <div class="sc"><div class="nn">06</div><h4>Turismo Responsable</h4><p>Visitas que respeten y aporten valor a comunidades locales sin explotarlas.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     S13  CONCLUSIÓN
+═══════════════════════════════════ -->
+<div class="slide s13" data-i="12">
+  <div class="gb"></div><div class="ob1"></div><div class="ob2"></div>
+  <div class="cnt">
+    <div class="lbl a1">Conclusión</div>
+    <h2 class="a2">La <em>diversidad</em><br>es nuestra mayor<br>riqueza</h2>
+    <div class="dv a3"></div>
+    <p class="cita a3">"Respetar, valorar y celebrar nuestras diferencias culturales es el camino hacia un mundo más justo, creativo y lleno de vida."</p>
+    <div class="preg a4">
+      <strong>🤔 Pregunta para la clase:</strong><br>
+      ¿Creéis que en nuestra sociedad realmente valoramos la diversidad cultural, o seguimos reproduciendo estereotipos sin darnos cuenta? ¿Qué podemos hacer como individuos?
+    </div>
+    <div class="fl a5">🌍 🌎 🌏 🕊️ 🤝 🌐 🎨 🎵</div>
+  </div>
+</div>
+
+<!-- ── Navegación ── -->
+<nav class="nav" id="nav">
+  <button id="prev" onclick="go(-1)" disabled>←</button>
+  <span class="ctr" id="ctr">1 / 13</span>
+  <button id="next" onclick="go(1)">→</button>
+  <div class="pbar"><div class="pfill" id="pf" style="width:7.7%"></div></div>
+</nav>
+
+<script>
+// cursor
+const cur = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top  = e.clientY + 'px';
+});
+
+// slides
+const slides = document.querySelectorAll('.slide');
+const total  = slides.length;
+let c = 0;
+
+// dots
+const dotsEl = document.getElementById('dots');
+for (let i = 0; i < total; i++) {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+}
+
+function goTo(n) {
+  slides[c].classList.remove('active');
+  slides[c].classList.add('exit');
+  setTimeout(() => slides[c].classList.remove('exit'), 650);
+  c = n;
+  slides[c].classList.add('active');
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === c));
+  document.getElementById('ctr').textContent = (c + 1) + ' / ' + total;
+  document.getElementById('pf').style.width  = ((c + 1) / total * 100) + '%';
+  document.getElementById('prev').disabled = c === 0;
+  document.getElementById('next').disabled = c === total - 1;
+}
+
+function go(d) { goTo(Math.max(0, Math.min(total - 1, c + d))); }
+
+// teclado
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  go(1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')    go(-1);
+});
+
+// táctil
+let tx = 0;
+document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+document.addEventListener('touchend',   e => {
+  const d = tx - e.changedTouches[0].clientX;
+  if (Math.abs(d) > 50) go(d > 0 ? 1 : -1);
+});
+</script>
+</body>
+</html>
